@@ -61,8 +61,8 @@ services:
       timeout: 15s
       retries: 10
 
-  bonus_service:
-    image: bonus_service
+  bonus-service:
+    image: cr.yandex/crp3lvholiifmsf14j67/bonus_service
     container_name: bonus_service
     build:
       context: "."
@@ -75,8 +75,8 @@ services:
       bonus_database:
         condition: service_healthy
 
-  flight_service:
-    image: flight_service
+  flight-service:
+    image: cr.yandex/crp3lvholiifmsf14j67/flight_service
     container_name: flight_service
     build:
       context: "."
@@ -89,8 +89,8 @@ services:
       flight_database:
         condition: service_healthy
 
-  ticket_service:
-    image: ticket_service
+  ticket-service:
+    image: cr.yandex/crp3lvholiifmsf14j67/ticket_service
     container_name: ticket_service
     build:
       context: "."
@@ -103,8 +103,8 @@ services:
       ticket_database:
         condition: service_healthy
 
-  gateway_service:
-    image: gateway_service
+  gateway-service:
+    image: cr.yandex/crp3lvholiifmsf14j67/gateway_service
     container_name: gateway_service
     build:
       context: "."

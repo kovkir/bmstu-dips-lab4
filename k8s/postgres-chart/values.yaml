@@ -1,0 +1,40 @@
+version: 16
+port: 5432
+
+default_database:
+  user: postgres
+  password: password
+
+resources:
+  requests:
+    cpu: 200m
+    memory: 128Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi
+
+
+replicaCount: 1
+
+services:
+  bonus_database:
+    name: bonus-db
+    container: cr.yandex/crp3lvholiifmsf14j67/bonus_database
+    replicaCount: 1
+    #env:
+      # DB_DSN: "" # add on deploy like ""
+    hostPort: 5432
+  flight_database:
+    name: flight-db
+    container: cr.yandex/crp3lvholiifmsf14j67/flight_database
+    replicaCount: 1
+    #env:
+      # DB_DSN: "" # add on deploy like ""
+    hostPort: 5433
+  ticket_database:
+    name: ticket-db
+    container: cr.yandex/crp3lvholiifmsf14j67/ticket_database
+    replicaCount: 1
+    #env:
+      # DB_DSN: "" # add on deploy like ""
+    hostPort: 5434

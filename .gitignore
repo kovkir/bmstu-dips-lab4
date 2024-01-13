@@ -10,3 +10,4 @@ pg_data_ticket/
 pg_data_bonus/
 
 docs/key.pem
+docs/ca.pem
