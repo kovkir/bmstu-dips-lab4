@@ -18,21 +18,21 @@ replicaCount: 1
 services:
   bonus-database:
     name: bonus-db
-    container: cr.yandex/catahd5f79892d74b3i5/bonus-database
+    container: cr.yandex/crp3lvholiifmsf14j67/bonus-database
     replicaCount: 1
     #env:
       # DB_DSN: "" # add on deploy like ""
     hostPort: 5432
   flight-database:
     name: flight-db
-    container: cr.yandex/catahd5f79892d74b3i5/flight-database
+    container: cr.yandex/crp3lvholiifmsf14j67/flight-database
     replicaCount: 1
      #env:
       # DB_DSN: "" # add on deploy like ""
     hostPort: 5433
   ticket-database:
     name: ticket-db
-    container: cr.yandex/catahd5f79892d74b3i5/ticket-database
+    container: cr.yandex/crp3lvholiifmsf14j67/ticket-database
     replicaCount: 1
      #env:
       # DB_DSN: "" # add on deploy like ""

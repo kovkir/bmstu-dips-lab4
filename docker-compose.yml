@@ -62,7 +62,7 @@ services:
       retries: 10
 
   bonus-service:
-    image: cr.yandex/catahd5f79892d74b3i5/bonus-service
+    image: cr.yandex/crp3lvholiifmsf14j67/bonus-service
     container_name: bonus-service
     build:
       context: "."
@@ -76,7 +76,7 @@ services:
         condition: service_healthy
 
   flight-service:
-    image: cr.yandex/catahd5f79892d74b3i5/flight-service
+    image: cr.yandex/crp3lvholiifmsf14j67/flight-service
     container_name: flight-service
     build:
       context: "."
@@ -90,7 +90,7 @@ services:
         condition: service_healthy
 
   ticket-service:
-    image: cr.yandex/catahd5f79892d74b3i5/ticket-service
+    image: cr.yandex/crp3lvholiifmsf14j67/ticket-service
     container_name: ticket-service
     build:
       context: "."
@@ -104,7 +104,7 @@ services:
         condition: service_healthy
 
   gateway-service:
-    image: cr.yandex/catahd5f79892d74b3i5/gateway-service
+    image: cr.yandex/crp3lvholiifmsf14j67/gateway-service
     container_name: gateway-service
     build:
       context: "."
