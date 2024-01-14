@@ -67,9 +67,9 @@ jobs:
       
       - name: Deploy db
         run: |
-          echo ${{ secrets.CRYANDEX_PASSWORD }} | sudo cp ./bonus_database/sql/init_db.sql ./k8s/postgres-chart/bonus-db-init-db.sql |
-          echo ${{ secrets.CRYANDEX_PASSWORD }} | sudo cp ./flight_database/sql/init_db.sql ./k8s/postgres-chart/flight-db-init-db.sql |
-          echo ${{ secrets.CRYANDEX_PASSWORD }} | sudo cp ./ticket_database/sql/init_db.sql ./k8s/postgres-chart/ticket-db-init-db.sql |
+          echo ${{ secrets.CRYANDEX_PASSWORD }} | sudo cp ./bonus_service/sql/init_db.sql ./k8s/postgres-chart/bonusdb-init-db.sql |
+          echo ${{ secrets.CRYANDEX_PASSWORD }} | sudo cp ./flight_service/sql/init_db.sql ./k8s/postgres-chart/flightdb-init-db.sql |
+          echo ${{ secrets.CRYANDEX_PASSWORD }} | sudo cp ./ticket_service/sql/init_db.sql ./k8s/postgres-chart/ticketdb-init-db.sql |
           helm --kubeconfig ./kube.config upgrade --install db ./k8s/postgres-chart
           
       - name: Deploy app

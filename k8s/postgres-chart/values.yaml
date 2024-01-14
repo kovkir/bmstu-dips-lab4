@@ -20,20 +20,14 @@ services:
     name: bonusdb
     container: cr.yandex/crp3lvholiifmsf14j67/bonusdb
     replicaCount: 1
-    #env:
-      # DB_DSN: "" # add on deploy like ""
     hostPort: 5432
   flightdb:
     name: flightdb
     container: cr.yandex/crp3lvholiifmsf14j67/flightdb
     replicaCount: 1
-     #env:
-      # DB_DSN: "" # add on deploy like ""
     hostPort: 5433
   ticketdb:
     name: ticketdb
     container: cr.yandex/crp3lvholiifmsf14j67/ticketdb
     replicaCount: 1
-     #env:
-      # DB_DSN: "" # add on deploy like ""
     hostPort: 5434

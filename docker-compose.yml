@@ -11,7 +11,7 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=bonusdb
     volumes:
-      - ./pg_data_bonus:/var/lib/postgresql/data
+      - ./db-bonus:/var/lib/postgresql/data
       - ./bonus_service/sql/:/docker-entrypoint-initdb.d/
     networks:
       - default
@@ -31,7 +31,7 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=flightdb
     volumes:
-      - ./pg_data_flight:/var/lib/postgresql/data
+      - ./db-flight:/var/lib/postgresql/data
       - ./flight_service/sql/:/docker-entrypoint-initdb.d/
     networks:
       - default
@@ -51,7 +51,7 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=ticketdb
     volumes:
-      - ./pg_data_ticket:/var/lib/postgresql/data
+      - ./db-ticket:/var/lib/postgresql/data
       - ./ticket_service/sql/:/docker-entrypoint-initdb.d/
     networks:
       - default
@@ -115,11 +115,11 @@ services:
       - default
 
 volumes:
-  pg_data_bonus:
+  db-bonus:
     driver: local
-  pg_data_flight:
+  db-flight:
     driver: local
-  pg_data_ticket:
+  db-ticket:
     driver: local
 
 networks:
