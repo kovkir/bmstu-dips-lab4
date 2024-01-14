@@ -10,7 +10,7 @@ services:
     container: cr.yandex/crp3lvholiifmsf14j67/bonus-service
     replicaCount: 1
     env:
-      DB_DSN: "host=db-service user=postgres password=password dbname=bonus_db port=5432" # add on deploy like ""
+      DB_DSN: "host=db-service user=postgres password=password dbname=bonusdb port=5432" # add on deploy like ""
     publishUrl: /bonus-service-direct/
     port: 8050
     targetPort: 8050
@@ -19,7 +19,7 @@ services:
     container: cr.yandex/crp3lvholiifmsf14j67/flight-service
     replicaCount: 1
     env:
-      DB_DSN: "host=db-service user=postgres password=password dbname=flight_db port=5432" # add on deploy
+      DB_DSN: "host=db-service user=postgres password=password dbname=flightdb port=5432" # add on deploy
     publishUrl: /flight-service-direct/
     port: 8060
     targetPort: 8060
@@ -28,7 +28,7 @@ services:
     container: cr.yandex/crp3lvholiifmsf14j67/ticket-service
     replicaCount: 1
     env:
-      DB_DSN: "host=db-service user=postgres password=password dbname=ticket_db port=5432" # add on deploy
+      DB_DSN: "host=db-service user=postgres password=password dbname=ticketdb port=5432" # add on deploy
     publishUrl: /ticket-service-direct/
     port: 8070
     targetPort: 8070

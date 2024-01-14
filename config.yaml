@@ -2,20 +2,20 @@ databases:
   bonus_db:
     user: postgres
     password: password
-    db: bonus_db
-    host: bonus-database
+    db: bonusdb
+    host: bonusdb
     port: 5432
   flight_db:
     user: postgres
     password: password
-    db: flight_db
-    host: flight-database
+    db: flightdb
+    host: flightdb
     port: 5432
   ticket_db:
     user: postgres
     password: password
-    db: ticket_db
-    host: ticket-database
+    db: ticketdb
+    host: ticketdb
     port: 5432
 
 services:

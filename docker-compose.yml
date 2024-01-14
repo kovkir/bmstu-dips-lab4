@@ -1,15 +1,15 @@
 version: '3.1'
 
 services:
-  bonus-database:
+  bonusdb:
     image: postgres:16-alpine
-    container_name: bonus-database
+    container_name: bonusdb
     ports:
       - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=bonus_db
+      - POSTGRES_DB=bonusdb
     volumes:
       - ./pg_data_bonus:/var/lib/postgresql/data
       - ./bonus_service/sql/init_db.sql:/docker-entrypoint-initdb.d/init-db.sql
@@ -21,15 +21,15 @@ services:
       timeout: 15s
       retries: 10
 
-  flight-database:
+  flightdb:
     image: postgres:16-alpine
-    container_name: flight-database
+    container_name: flightdb
     ports:
       - "5433:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=flight_db
+      - POSTGRES_DB=flightdb
     volumes:
       - ./pg_data_flight:/var/lib/postgresql/data
       - ./flight_service/sql/init_db.sql:/docker-entrypoint-initdb.d/init-db.sql
@@ -41,15 +41,15 @@ services:
       timeout: 15s
       retries: 10
 
-  ticket-database:
+  ticketdb:
     image: postgres:16-alpine
-    container_name: ticket-database
+    container_name: ticketdb
     ports:
       - "5434:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=ticket_db
+      - POSTGRES_DB=ticketdb
     volumes:
       - ./pg_data_ticket:/var/lib/postgresql/data
       - ./ticket_service/sql/init_db.sql:/docker-entrypoint-initdb.d/init-db.sql
@@ -72,7 +72,7 @@ services:
     networks:
       - default
     depends_on:
-      bonus-database:
+      bonusdb:
         condition: service_healthy
 
   flight-service:
@@ -86,7 +86,7 @@ services:
     networks:
       - default
     depends_on:
-      flight-database:
+      flightdb:
         condition: service_healthy
 
   ticket-service:
@@ -100,7 +100,7 @@ services:
     networks:
       - default
     depends_on:
-      ticket-database:
+      ticketdb:
         condition: service_healthy
 
   gateway-service:
