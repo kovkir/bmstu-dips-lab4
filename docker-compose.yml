@@ -1,9 +1,9 @@
 version: '3.1'
 
 services:
-  bonus_database:
+  bonus-database:
     image: postgres:16-alpine
-    container_name: bonus_database
+    container_name: bonus-database
     ports:
       - "5432:5432"
     environment:
@@ -12,7 +12,7 @@ services:
       - POSTGRES_DB=bonus_db
     volumes:
       - ./pg_data_bonus:/var/lib/postgresql/data
-      - ./bonus_service/sql/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+      - ./bonus_service/sql/init_db.sql:/docker-entrypoint-initdb.d/init-db.sql
     networks:
       - default
     healthcheck:
@@ -21,9 +21,9 @@ services:
       timeout: 15s
       retries: 10
 
-  flight_database:
+  flight-database:
     image: postgres:16-alpine
-    container_name: flight_database
+    container_name: flight-database
     ports:
       - "5433:5432"
     environment:
@@ -32,7 +32,7 @@ services:
       - POSTGRES_DB=flight_db
     volumes:
       - ./pg_data_flight:/var/lib/postgresql/data
-      - ./flight_service/sql/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+      - ./flight_service/sql/init_db.sql:/docker-entrypoint-initdb.d/init-db.sql
     networks:
       - default
     healthcheck:
@@ -41,9 +41,9 @@ services:
       timeout: 15s
       retries: 10
 
-  ticket_database:
+  ticket-database:
     image: postgres:16-alpine
-    container_name: ticket_database
+    container_name: ticket-database
     ports:
       - "5434:5432"
     environment:
@@ -52,7 +52,7 @@ services:
       - POSTGRES_DB=ticket_db
     volumes:
       - ./pg_data_ticket:/var/lib/postgresql/data
-      - ./ticket_service/sql/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+      - ./ticket_service/sql/init_db.sql:/docker-entrypoint-initdb.d/init-db.sql
     networks:
       - default
     healthcheck:
@@ -62,8 +62,8 @@ services:
       retries: 10
 
   bonus-service:
-    image: cr.yandex/crp3lvholiifmsf14j67/bonus_service
-    container_name: bonus_service
+    image: cr.yandex/catahd5f79892d74b3i5/bonus-service
+    container_name: bonus-service
     build:
       context: "."
       dockerfile: ./docker/bonus.Dockerfile
@@ -72,12 +72,12 @@ services:
     networks:
       - default
     depends_on:
-      bonus_database:
+      bonus-database:
         condition: service_healthy
 
   flight-service:
-    image: cr.yandex/crp3lvholiifmsf14j67/flight_service
-    container_name: flight_service
+    image: cr.yandex/catahd5f79892d74b3i5/flight-service
+    container_name: flight-service
     build:
       context: "."
       dockerfile: ./docker/flight.Dockerfile
@@ -86,12 +86,12 @@ services:
     networks:
       - default
     depends_on:
-      flight_database:
+      flight-database:
         condition: service_healthy
 
   ticket-service:
-    image: cr.yandex/crp3lvholiifmsf14j67/ticket_service
-    container_name: ticket_service
+    image: cr.yandex/catahd5f79892d74b3i5/ticket-service
+    container_name: ticket-service
     build:
       context: "."
       dockerfile: ./docker/ticket.Dockerfile
@@ -100,12 +100,12 @@ services:
     networks:
       - default
     depends_on:
-      ticket_database:
+      ticket-database:
         condition: service_healthy
 
   gateway-service:
-    image: cr.yandex/crp3lvholiifmsf14j67/gateway_service
-    container_name: gateway_service
+    image: cr.yandex/catahd5f79892d74b3i5/gateway-service
+    container_name: gateway-service
     build:
       context: "."
       dockerfile: ./docker/gateway.Dockerfile

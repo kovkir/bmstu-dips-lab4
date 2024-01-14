@@ -13,28 +13,27 @@ resources:
     cpu: 200m
     memory: 256Mi
 
-
 replicaCount: 1
 
 services:
-  bonus_database:
+  bonus-database:
     name: bonus-db
-    container: cr.yandex/crp3lvholiifmsf14j67/bonus_database
+    container: cr.yandex/catahd5f79892d74b3i5/bonus-database
     replicaCount: 1
     #env:
       # DB_DSN: "" # add on deploy like ""
     hostPort: 5432
-  flight_database:
+  flight-database:
     name: flight-db
-    container: cr.yandex/crp3lvholiifmsf14j67/flight_database
+    container: cr.yandex/catahd5f79892d74b3i5/flight-database
     replicaCount: 1
-    #env:
+     #env:
       # DB_DSN: "" # add on deploy like ""
     hostPort: 5433
-  ticket_database:
+  ticket-database:
     name: ticket-db
-    container: cr.yandex/crp3lvholiifmsf14j67/ticket_database
+    container: cr.yandex/catahd5f79892d74b3i5/ticket-database
     replicaCount: 1
-    #env:
+     #env:
       # DB_DSN: "" # add on deploy like ""
     hostPort: 5434

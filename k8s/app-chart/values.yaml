@@ -7,34 +7,34 @@ replicaCount: 1
 services:
   bonus-service:
     name: bonus-service
-    container: cr.yandex/crp3lvholiifmsf14j67/bonus_service
+    container: cr.yandex/catahd5f79892d74b3i5/bonus-service
     replicaCount: 1
     env:
-      DB_DSN: "host=db-service user=program password=test dbname=loyalties port=5432" # add on deploy like ""
+      DB_DSN: "host=db-service user=postgres password=password dbname=bonus_db port=5432" # add on deploy like ""
     publishUrl: /bonus-service-direct/
     port: 8050
     targetPort: 8050
   flight-service:
     name: flight-service
-    container: cr.yandex/crp3lvholiifmsf14j67/flight_service
+    container: cr.yandex/catahd5f79892d74b3i5/flight-service
     replicaCount: 1
     env:
-      DB_DSN: "host=db-service user=program password=test dbname=payments port=5432" # add on deploy
+      DB_DSN: "host=db-service user=postgres password=password dbname=flight_db port=5432" # add on deploy
     publishUrl: /flight-service-direct/
     port: 8060
     targetPort: 8060
   ticket-service:
     name: ticket-service
-    container: cr.yandex/crp3lvholiifmsf14j67/ticket_service
+    container: cr.yandex/catahd5f79892d74b3i5/ticket-service
     replicaCount: 1
     env:
-      DB_DSN: "host=db-service user=program password=test dbname=reservations port=5432" # add on deploy
+      DB_DSN: "host=db-service user=postgres password=password dbname=ticket_db port=5432" # add on deploy
     publishUrl: /ticket-service-direct/
     port: 8070
     targetPort: 8070
   gateway-service:
     name: gateway-service
-    container: cr.yandex/crp3lvholiifmsf14j67/gateway_service
+    container: cr.yandex/catahd5f79892d74b3i5/gateway-service
     replicaCount: 1
     env:
       BONUS_SERVICE_URL: "http://bonus-service/api/v1/"
