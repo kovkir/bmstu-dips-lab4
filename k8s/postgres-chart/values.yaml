@@ -1,0 +1,33 @@
+version: 16
+port: 5432
+
+default_database:
+  user: postgres
+  password: password
+
+resources:
+  requests:
+    cpu: 200m
+    memory: 128Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi
+
+replicaCount: 1
+
+services:
+  bonusdb:
+    name: bonusdb
+    container: cr.yandex/crp3lvholiifmsf14j67/bonusdb
+    replicaCount: 1
+    hostPort: 5432
+  flightdb:
+    name: flightdb
+    container: cr.yandex/crp3lvholiifmsf14j67/flightdb
+    replicaCount: 1
+    hostPort: 5433
+  ticketdb:
+    name: ticketdb
+    container: cr.yandex/crp3lvholiifmsf14j67/ticketdb
+    replicaCount: 1
+    hostPort: 5434

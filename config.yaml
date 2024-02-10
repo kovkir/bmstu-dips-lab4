@@ -1,0 +1,44 @@
+databases:
+  bonus_db:
+    user: postgres
+    password: password
+    db: bonusdb
+    host: bonusdb
+    port: 5432
+  flight_db:
+    user: postgres
+    password: password
+    db: flightdb
+    host: flightdb
+    port: 5432
+  ticket_db:
+    user: postgres
+    password: password
+    db: ticketdb
+    host: ticketdb
+    port: 5432
+
+services:
+  bonus:
+    host: "0.0.0.0"
+    port: 8050
+    log_level: "info"
+    reload: True
+  flight:
+    host: "0.0.0.0"
+    port: 8060
+    log_level: "info"
+    reload: True
+  ticket:
+    host: "0.0.0.0"
+    port: 8070
+    log_level: "info"
+    reload: True
+  gateway:
+    host: "0.0.0.0"
+    port: 8080
+    log_level: "info"
+    reload: True
+    bonus_host:  bonus-service
+    flight_host: flight-service
+    ticket_host: ticket-service

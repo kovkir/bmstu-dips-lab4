@@ -1,0 +1,126 @@
+version: '3.1'
+
+services:
+  bonusdb:
+    image: postgres:16-alpine
+    container_name: bonusdb
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=bonusdb
+    volumes:
+      - ./db-bonus:/var/lib/postgresql/data
+      - ./bonus_service/sql/:/docker-entrypoint-initdb.d/
+    networks:
+      - default
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 20s
+      timeout: 15s
+      retries: 10
+
+  flightdb:
+    image: postgres:16-alpine
+    container_name: flightdb
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=flightdb
+    volumes:
+      - ./db-flight:/var/lib/postgresql/data
+      - ./flight_service/sql/:/docker-entrypoint-initdb.d/
+    networks:
+      - default
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 20s
+      timeout: 15s
+      retries: 10
+
+  ticketdb:
+    image: postgres:16-alpine
+    container_name: ticketdb
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=ticketdb
+    volumes:
+      - ./db-ticket:/var/lib/postgresql/data
+      - ./ticket_service/sql/:/docker-entrypoint-initdb.d/
+    networks:
+      - default
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 20s
+      timeout: 15s
+      retries: 10
+
+  bonus-service:
+    image: cr.yandex/crp3lvholiifmsf14j67/bonus-service
+    container_name: bonus-service
+    build:
+      context: "."
+      dockerfile: ./docker/bonus.Dockerfile
+    ports:
+      - "8050:8050"
+    networks:
+      - default
+    depends_on:
+      bonusdb:
+        condition: service_healthy
+
+  flight-service:
+    image: cr.yandex/crp3lvholiifmsf14j67/flight-service
+    container_name: flight-service
+    build:
+      context: "."
+      dockerfile: ./docker/flight.Dockerfile
+    ports:
+      - "8060:8060"
+    networks:
+      - default
+    depends_on:
+      flightdb:
+        condition: service_healthy
+
+  ticket-service:
+    image: cr.yandex/crp3lvholiifmsf14j67/ticket-service
+    container_name: ticket-service
+    build:
+      context: "."
+      dockerfile: ./docker/ticket.Dockerfile
+    ports:
+      - "8070:8070"
+    networks:
+      - default
+    depends_on:
+      ticketdb:
+        condition: service_healthy
+
+  gateway-service:
+    image: cr.yandex/crp3lvholiifmsf14j67/gateway-service
+    container_name: gateway-service
+    build:
+      context: "."
+      dockerfile: ./docker/gateway.Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - default
+
+volumes:
+  db-bonus:
+    driver: local
+  db-flight:
+    driver: local
+  db-ticket:
+    driver: local
+
+networks:
+  default:
